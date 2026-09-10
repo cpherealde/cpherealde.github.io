@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wland网站-创作与想象力的数字世界探索指南</title>
+    <meta name="description" content="wland网站是一个集创意写作、互动叙事与想象分享于一体的数字平台。了解其功能特色、使用方式与社区文化，开启你的创作之旅。">
+    <meta name="keywords" content="wland网站,wland,创作平台,互动叙事,创意写作,在线写作,社区分享">
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.7;
+        }
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .site-header {
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #21262d;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #f0f6fc;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: #58a6ff;
+        }
+        .main-nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+        .main-nav a {
+            color: #8b949e;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover {
+            color: #f0f6fc;
+            text-decoration: none;
+        }
+        .nav-cta {
+            background: #238636;
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .nav-cta:hover {
+            background: #2ea043;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #f0f6fc;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            background: radial-gradient(ellipse at top left, #1f2937, #0d1117);
+            padding: 80px 0 70px;
+            text-align: center;
+            border-bottom: 1px solid #21262d;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #f0f6fc;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .hero h1 span {
+            background: linear-gradient(120deg, #58a6ff, #3fb950);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #8b949e;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #238636;
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover {
+            background: #2ea043;
+            text-decoration: none;
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #f0f6fc;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 1px solid #30363d;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-secondary:hover {
+            border-color: #8b949e;
+            text-decoration: none;
+        }
+
+        /* Features */
+        .features-section {
+            padding: 80px 0;
+            background: #0d1117;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #f0f6fc;
+            margin-bottom: 15px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #8b949e;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #30363d;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            color: #f0f6fc;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .feature-card p {
+            color: #8b949e;
+            font-size: 0.95rem;
+        }
+
+        /* How it works */
+        .how-section {
+            padding: 80px 0;
+            background: #161b22;
+            border-top: 1px solid #21262d;
+            border-bottom: 1px solid #21262d;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .step-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: #0d1117;
+            border-radius: 12px;
+            border: 1px solid #21262d;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #238636;
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .step-item h3 {
+            color: #f0f6fc;
+            margin-bottom: 10px;
+        }
+        .step-item p {
+            color: #8b949e;
+            font-size: 0.95rem;
+        }
+
+        /* Explore / Categories */
+        .explore-section {
+            padding: 80px 0;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .category-card {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .category-card:hover {
+            background: #1c2128;
+            border-color: #30363d;
+        }
+        .category-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .category-card h4 {
+            color: #f0f6fc;
+            font-size: 1rem;
+        }
+
+        /* Community / Showcase */
+        .community-section {
+            padding: 80px 0;
+            background: #161b22;
+            border-top: 1px solid #21262d;
+        }
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .work-item {
+            background: #0d1117;
+            border: 1px solid #21262d;
+            border-radius: 12px;
+            padding: 25px;
+            transition: border-color 0.2s;
+        }
+        .work-item:hover {
+            border-color: #30363d;
+        }
+        .work-tag {
+            display: inline-block;
+            background: #1f6feb;
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .work-item h3 {
+            color: #f0f6fc;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .work-item p {
+            color: #8b949e;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .work-meta {
+            display: flex;
+            gap: 20px;
+            color: #6e7681;
+            font-size: 0.85rem;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 80px 0;
+        }
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #f0f6fc;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .faq-answer {
+            color: #8b949e;
+            font-size: 0.95rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 70px 0;
+            text-align: center;
+            background: radial-gradient(circle at bottom right, #1f2937, #0d1117);
+            border-top: 1px solid #21262d;
+        }
+        .cta-section h2 {
+            color: #f0f6fc;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .cta-section p {
+            color: #8b949e;
+            margin-bottom: 30px;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #010409;
+            padding: 40px 0 20px;
+            border-top: 1px solid #21262d;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-col h4 {
+            color: #f0f6fc;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+        .footer-col a {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+        .footer-col a:hover {
+            color: #f0f6fc;
+        }
+        .copyright {
+            text-align: center;
+            color: #6e7681;
+            font-size: 0.85rem;
+            border-top: 1px solid #21262d;
+            padding-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: #0d1117;
+                border-bottom: 1px solid #21262d;
+                padding: 20px;
+            }
+            .main-nav.active {
+                display: block;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero {
+                padding: 50px 0;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .features-grid,
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+            .steps {
+                grid-template-columns: 1fr;
+            }
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">
+                <a href="#">wland<span>·</span>创作世界</a>
+            </div>
+            <button class="menu-toggle" aria-label="菜单">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="#features">特色</a></li>
+                    <li><a href="#how">玩法</a></li>
+                    <li><a href="#explore">探索</a></li>
+                    <li><a href="#community">社区</a></li>
+                    <li><a href="#faq">帮助</a></li>
+                    <li><a href="#" class="nav-cta">开始创作</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>wland网站 —— <span>让想象力找到归宿</span></h1>
+            <p>一个为创意写作者和互动叙事爱好者打造的数字世界。在这里，你可以创建自己的文字宇宙，也可以走进他人的奇思妙想。</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">立即加入</a>
+                <a href="#features" class="btn-secondary">了解更多</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">为什么选择 wland ？</h2>
+            <p class="section-subtitle">它不仅仅是一个写作工具，更是一个连接创作者与读者的互动社区。</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>沉浸式创作工具</h3>
+                    <p>提供简洁而强大的在线编辑器，支持章节管理、人物设定和世界观构建，让你专注于故事本身。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>互动叙事体验</h3>
+                    <p>支持分支剧情与多结局设定，读者可以参与选择，共同推动故事发展，获得独特的阅读体验。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>活跃创作社区</h3>
+                    <p>发现志同道合的伙伴，参与主题创作活动，获取读者的即时反馈，在交流中不断成长。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>多元化题材库</h3>
+                    <p>从奇幻科幻到现实青春，从悬疑推理到轻松日常，无论何种类型，都能找到属于它的读者与同好。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>安全友善氛围</h3>
+                    <p>明确的社区规范与内容分级制度，保护创作者的成果，为所有用户提供友好、安全的交流环境。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>多端同步阅读</h3>
+                    <p>响应式设计让你在电脑、平板和手机上都获得流畅的阅读与创作体验，随时随地记录灵感。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-section" id="how">
+        <div class="container">
+            <h2 class="section-title">如何开始你的创作之旅</h2>
+            <p class="section-subtitle">从构思到发布，wland 为你提供了清晰简单的路径。</p>
+            <div class="steps">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h3>创建账号</h3>
+                    <p>使用邮箱快速注册，完善你的个人资料，设置喜欢的标签与题材偏好。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h3>构思与创建</h3>
+                    <p>新建一个作品，设定简介、标签与分级。规划你的世界框架或从一个灵感片段开始。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h3>连载与互动</h3>
+                    <p>持续更新章节，与评论区读者交流，根据反馈优化故事。也可以参与官方或自发的创作活动。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <h3>积累与成长</h3>
+                    <p>通过作品获得关注与收藏，建立自己的读者群，甚至与其他创作者进行联动创作。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore / Categories -->
+    <section class="explore-section" id="explore">
+        <div class="container">
+            <h2 class="section-title">探索创作领域</h2>
+            <p class="section-subtitle">无论你偏爱何种风格，这里总有一片属于你的天地。</p>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="icon">🧙</div>
+                    <h4>奇幻史诗</h4>
+                </div>
+                <div class="category-card">
+                    <div class="icon">🚀</div>
+                    <h4>科幻未来</h4>
+                </div>
+                <div class="category-card">
+                    <div class="icon">🔍</div>
+                    <h4>悬疑推理</h4>
+                </div>
+                <div class="category-card">
+                    <div class="icon">💕</div>
+                    <h4>恋爱日常</h4>
+                </div>
+                <div class="category-card">
+                    <div class="icon">⚔️</div>
+                    <h4>武侠江湖</h4>
+                </div>
+                <div class="category-card">
+                    <div class="icon">🏙️</div>
+                    <h4>都市现实</h4>
+                </div>
+                <div class="category-card">
+                    <div class="icon">👻</div>
+                    <h4>灵异怪谈</h4>
+                </div>
+                <div class="category-card">
+                    <div class="icon">🌈</div>
+                    <h4>纯爱/耽美</h4>
+                </div>
+                <div class="category-card">
+                    <div class="icon">🎭</div>
+                    <h4>二次元同人</h4>
+                </div>
+                <div class="category-card">
+                    <div class="icon">📖</div>
+                    <h4>绘本小说</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Showcase -->
+    <section class="community-section" id="community">
+        <div class="container">
+            <h2 class="section-title">社区热门动态</h2>
+            <p class="section-subtitle">看看其他创作者正在编织怎样的故事世界。</p>
+            <div class="works-grid">
+                <div class="work-item">
+                    <span class="work-tag">奇幻</span>
+                    <h3>《雾海灯塔》</h3>
+                    <p>在终年被浓雾笼罩的港口，年轻的守塔人发现了一本能够预知海难的日记，而日记的最后一页写着他自己的名字...</p>
+                    <div class="work-meta">
+                        <span>👁️ 12.4k</span>
+                        <span>💬 356</span>
+                        <span>⭐ 4.8</span>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <span class="work-tag">科幻</span>
+                    <h3>《第七次重启》</h3>
+                    <p>程序员林晚发现自己被困在7月12日这一天。每一次死亡，世界都会重启，而唯一的线索是城市上空那个从未出现过的黑色太阳...</p>
+                    <div class="work-meta">
+                        <span>👁️ 9.8k</span>
+                        <span>💬 292</span>
+                        <span>⭐ 4.9</span>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <span class="work-tag">互动叙事</span>
+                    <h3>《深夜便利店》</h3>
+                    <p>你是一位深夜兼职店员，每天都会遇到奇怪的客人。选择你的回应方式，揭开这家便利店背后的秘密。拥有超过20种不同结局。</p>
+                    <div class="work-meta">
+                        <span>👁️ 18.2k</span>
+                        <span>💬 1.2k</span>
+                        <span>⭐ 4.9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title">常见问题</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">wland网站是免费的吗？</div>
+                    <div class="faq-answer">wland网站提供基础免费服务，包括创建作品、发表章节和参与社区讨论。对于需要更多高级功能的用户，可能会提供可选的增值服务，但核心创作体验保持开放。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">我上传的作品版权归谁所有？</div>
+                    <div class="faq-answer">你在wland网站创作的内容，其版权始终归你本人所有。平台仅提供展示与交流的空间，不会未经授权使用你的作品。建议你在发布前仔细阅读最新的用户协议。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如何保护我的作品不被抄袭？</div>
+                    <div class="faq-answer">wland网站设有内容反馈机制，并提供作品发布时间戳作为辅助证据。建议保留创作过程中的草稿与思路记录。若发现侵权行为，可通过站内渠道进行投诉。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">可以在手机上使用wland吗？</div>
+                    <div class="faq-answer">可以。wland网站采用响应式设计，你可以通过手机浏览器直接访问和操作。目前可能没有独立的移动应用，但网页体验已经针对移动端进行了优化。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如何找到更多喜欢我作品的读者？</div>
+                    <div class="faq-answer">积极参与社区活动、为作品设置准确吸引人的标签、保持稳定更新、在评论区与读者真诚互动，这些都是有效的方式。wland也会为优质内容提供推荐位。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>准备好书写你的第一章了吗？</h2>
+            <p>加入 wland，让世界看到你的想象。</p>
+            <a href="#" class="btn-primary">创建我的作品</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>wland网站</h4>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">加入团队</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>支持与帮助</h4>
+                    <ul>
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">社区规范</a></li>
+                        <li><a href="#">反馈建议</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>更多内容</h4>
+                    <ul>
+                        <li><a href="#">创作指南</a></li>
+                        <li><a href="#">热门标签</a></li>
+                        <li><a href="#">官方活动</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微博</a></li>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">Bilibili</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 wland网站 · 保留所有权利 · 让每一次创作都有回响</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple JS for mobile menu toggle -->
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            var nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        });
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
