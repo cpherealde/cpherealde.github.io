@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叔叔不约匿名聊天-安全倾诉与随机交友的温暖角落</title>
+    <meta name="description" content="叔叔不约匿名聊天是一个专注于倾听、陪伴与轻松社交的匿名聊天平台。在这里，你可以放下顾虑，倾诉烦恼，遇见有趣的灵魂，享受纯粹的文字交流。">
+    <meta name="keywords" content="叔叔不约匿名聊天,匿名聊天,陌生人聊天,树洞,倾诉,随机聊天,匿名社交">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: #f5f7fb;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* Header */
+        .site-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo span {
+            font-weight: 300;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .main-nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: #fff;
+            border-bottom-color: #ffd166;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #ffd166;
+            color: #333;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0 100px;
+            text-align: center;
+            color: #fff;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero {
+            background-color: #fff;
+            color: #667eea;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-hero-ghost {
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-hero-ghost:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #333;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 35px 25px;
+            border-radius: 16px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15);
+            border-top-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* How it works */
+        .how-it-works {
+            background-color: #fff;
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Topics / Categories */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .topic-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .topic-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .topic-item .topic-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .topic-item h4 {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .topic-item p {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* Safety Section */
+        .safety {
+            background: #fff;
+            border-radius: 24px;
+            padding: 50px 40px;
+            margin-top: 30px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+            border-left: 5px solid #667eea;
+        }
+
+        .safety h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .safety-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .safety-list li {
+            padding: 15px 20px;
+            background: #f8f9ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .safety-list li::before {
+            content: '✓';
+            color: #667eea;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* FAQ */
+        .faq-section {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 60px 0;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 14px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f8f9ff;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #667eea;
+            font-weight: 400;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+            color: #555;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 25px 20px;
+            max-height: 500px;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 24px;
+            margin: 40px 0;
+            color: #fff;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .cta-section .btn {
+            background-color: #fff;
+            color: #667eea;
+            font-size: 1.1rem;
+            padding: 14px 40px;
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: #1a1a2e;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 50px 0 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background: #667eea;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .btn-hero,
+            .btn-hero-ghost {
+                width: 220px;
+                margin: 0 auto;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .main-nav ul {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .how-it-works,
+            .safety {
+                padding: 35px 25px;
+            }
+
+            .steps {
+                gap: 25px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding: 60px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">
+                <a href="#">叔叔不约 <span>| 匿名聊天</span></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#features">为什么选择我们</a></li>
+                    <li><a href="#how">如何开始</a></li>
+                    <li><a href="#topics">热门话题</a></li>
+                    <li><a href="#safety">安全中心</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline">登录</a>
+                <a href="#" class="btn btn-primary">立即开始</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>叔叔不约匿名聊天</h1>
+            <p>放下顾虑，遇见真实。在这里，你可以倾诉烦恼、分享快乐，也可以和来自五湖四海的陌生人聊聊天，发现有趣的灵魂。</p>
+            <div class="hero-actions">
+                <a href="#" class="btn btn-hero">🎭 一键匿名进入聊天室</a>
+                <a href="#how" class="btn btn-hero-ghost">了解更多玩法</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Features -->
+        <section id="features">
+            <div class="container">
+                <h2 class="section-title">为什么选择我们？</h2>
+                <p class="section-subtitle">一个安全、自由、温暖的匿名倾诉空间</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🛡️</span>
+                        <h3>完全匿名</h3>
+                        <p>无需注册手机号，不绑定任何个人信息。你可以自由选择昵称，甚至以游客身份进入，保护隐私从第一步开始。</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎭</span>
+                        <h3>真实倾诉</h3>
+                        <p>生活中的压力、烦恼、不为人知的秘密，都可以在这里说出来。我们的匿名环境让你卸下伪装，获得真实的情绪释放。</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🌍</span>
+                        <h3>随机匹配</h3>
+                        <p>一键匹配陌生人，每一次聊天都是一次全新的遇见。或许你会遇到一个懂你的人，或许会收获意外的惊喜。</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">👂</span>
+                        <h3>专业倾听</h3>
+                        <p>我们有一群经过培训的志愿者倾听者，随时准备为你提供情感支持。当你想说话时，他们一直都在。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section id="how">
+            <div class="container">
+                <div class="how-it-works">
+                    <h2 class="section-title">如何开始你的匿名聊天之旅？</h2>
+                    <p class="section-subtitle">三步开启，简单快捷</p>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h3>选择一个身份</h3>
+                            <p>你可以使用系统随机分配的昵称，也可以自己取一个有趣的名字。无需任何注册流程。</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h3>选择聊天模式</h3>
+                            <p>点击“随机匹配”与陌生人畅聊，或者选择“话题房间”与有共同兴趣的人交流。</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h3>开始倾诉与倾听</h3>
+                            <p>用文字表达你的想法，或者静静地倾听别人的故事。在这里，每一次交流都值得被尊重。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topics -->
+        <section id="topics">
+            <div class="container">
+                <h2 class="section-title">热门聊天话题与房间</h2>
+                <p class="section-subtitle">总有一个话题能触动你的心</p>
+                <div class="topics-grid">
+                    <div class="topic-item">
+                        <span class="topic-icon">💬</span>
+                        <h4>情感倾诉</h4>
+                        <p>恋爱、失恋、家庭关系</p>
+                    </div>
+                    <div class="topic-item">
+                        <span class="topic-icon">🌱</span>
+                        <h4>生活感悟</h4>
+                        <p>日常琐事、人生思考</p>
+                    </div>
+                    <div class="topic-item">
+                        <span class="topic-icon">💼</span>
+                        <h4>职场解压</h4>
+                        <p>工作压力、职业规划</p>
+                    </div>
+                    <div class="topic-item">
+                        <span class="topic-icon">🎮</span>
+                        <h4>兴趣同好</h4>
+                        <p>游戏、音乐、电影、读书</p>
+                    </div>
+                    <div class="topic-item">
+                        <span class="topic-icon">🌙</span>
+                        <h4>深夜树洞</h4>
+                        <p>那些白天说不出口的话</p>
+                    </div>
+                    <div class="topic-item">
+                        <span class="topic-icon">😄</span>
+                        <h4>轻松闲聊</h4>
+                        <p>无厘头话题、搞笑段子</p>
+                    </div>
+                    <div class="topic-item">
+                        <span class="topic-icon">📚</span>
+                        <h4>学习交流</h4>
+                        <p>考试、学习方法、经验分享</p>
+                    </div>
+                    <div class="topic-item">
+                        <span class="topic-icon">❤️</span>
+                        <h4>暖心互助</h4>
+                        <p>提供帮助或寻求支持</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Safety -->
+        <section id="safety">
+            <div class="container">
+                <div class="safety">
+                    <h3>🛡️ 安全与隐私保护承诺</h3>
+                    <ul class="safety-list">
+                        <li>所有聊天记录采用加密传输，我们不会存储你的聊天内容</li>
+                        <li>严格禁止索取个人联系方式、真实姓名、地址等私密信息</li>
+                        <li>平台设有举报机制，对骚扰、辱骂、不良内容零容忍</li>
+                        <li>匿名机制下，你的真实IP地址不会对其他用户可见</li>
+                        <li>提供一键拉黑、静音、退出等安全操作功能</li>
+                        <li>我们倡导尊重、友善、包容的社区氛围</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2 class="section-title">常见问题解答</h2>
+                <p class="section-subtitle">想了解更多？看看这里有没有你想问的</p>
+
+                <div class="faq-item">
+                    <div class="faq-question">叔叔不约匿名聊天需要下载软件吗？</div>
+                    <div class="faq-answer">不需要。我们是一个网页版匿名聊天平台，你只需在浏览器中打开网站即可使用。无论使用手机、平板还是电脑，都能获得流畅的聊天体验，无需安装任何应用程序。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">真的可以做到完全匿名吗？</div>
+                    <div class="faq-answer">是的。我们不会要求你注册、绑定手机号或提供任何真实身份信息。你可以使用系统生成的随机昵称进入聊天室。同时，我们对隐私保护采取严格措施，确保你的个人信息不被泄露。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">聊天过程中遇到不友善的人怎么办？</div>
+                    <div class="faq-answer">我们建立了一套完善的社区安全机制。如果你遇到任何形式的骚扰、辱骂或让你感到不适的言论，可以立即使用“举报”功能，我们的管理员会及时处理。同时，你也可以使用“拉黑”功能，将对方加入黑名单，之后你们将不再匹配。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">在这里可以聊哪些内容？</div>
+                    <div class="faq-answer">你可以聊任何不违反法律法规和公序良俗的话题。无论是生活中的烦恼、工作上的压力、情感上的困惑，还是兴趣爱好、新闻热点、奇闻趣事，都可以畅所欲言。我们鼓励真诚交流，但请尊重每一位聊天对象。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">是否收费？</div>
+                    <div class="faq-answer">我们提供完全免费的匿名聊天服务。目前所有基础聊天功能均不收取任何费用。未来如有增值服务（如个性化装扮、专属房间等），我们会提前公告，并保证基础功能始终免费开放。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">有年龄限制吗？</div>
+                    <div class="faq-answer">为了营造一个健康、安全的社交环境，我们建议18周岁以上的用户使用本平台。如果你是未成年人，请在监护人知情并同意的情况下使用，或寻求更适合你的倾诉渠道。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>准备好开始倾诉了吗？</h2>
+                <p>无论你此刻的心情如何，这里总有人愿意倾听。</p>
+                <a href="#" class="btn">🎭 立即进入匿名聊天</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">平台介绍</a></li>
+                        <li><a href="#">发展历程</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>使用帮助</h4>
+                    <ul>
+                        <li><a href="#">新手指南</a></li>
+                        <li><a href="#">聊天礼仪</a></li>
+                        <li><a href="#">举报与反馈</a></li>
+                        <li><a href="#">常见问题</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>社区规范</h4>
+                    <ul>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">内容规范</a></li>
+                        <li><a href="#">免责声明</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">知乎专栏</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 叔叔不约匿名聊天 - 用心倾听，用爱陪伴。本站为匿名交流平台，请文明用语，共同维护健康环境。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ 交互逻辑
+        document.querySelectorAll('.faq-question').forEach(function(question) {
+            question.addEventListener('click', function() {
+                var item = this.parentElement;
+                var isActive = item.classList.contains('active');
+                
+                // 关闭所有FAQ项
+                document.querySelectorAll('.faq-item').forEach(function(faq) {
+                    faq.classList.remove('active');
+                });
+                
+                // 如果当前项原本不是激活状态，则激活它
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+  </html>
